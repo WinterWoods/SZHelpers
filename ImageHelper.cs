@@ -24,7 +24,7 @@ namespace Helpers
             //从Bitmap创建一个System.Drawing.Graphics
             Graphics gr = Graphics.FromImage(bmp);
             //设置 
-            gr.SmoothingMode = SmoothingMode.HighQuality;
+            gr.SmoothingMode = SmoothingMode.AntiAlias;
             //下面这个也设成高质量
             gr.CompositingQuality = CompositingQuality.HighQuality;
             //下面这个设成High
