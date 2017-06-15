@@ -107,7 +107,8 @@ namespace Helpers
                 //采用时间比对方式
                 if(DateTime.Now<nextRunTime)
                 {
-                    Thread.Sleep(_timerSpanMil);
+                    Task.Delay(_timerSpanMil).Wait();
+                    //Thread.Sleep(_timerSpanMil);
                     
                     if (ct.IsCancellationRequested)
                     {
@@ -214,54 +215,54 @@ namespace Helpers
             DateTime DateTimeNow = DateTime.Now;
             if (timerInfo.TimerType == TimerType.DesDate)
             {
-                nextRunTime=new DateTime(int.Parse(timerInfo.Year),int.Parse(timerInfo.Month),int.Parse(timerInfo.Day),int.Parse(timerInfo.Hour),int.Parse(timerInfo.Minute),int.Parse(timerInfo.Second),int.Parse(timerInfo.Millisecond));
+                nextRunTime=new DateTime(timerInfo.Year, timerInfo.Month,timerInfo.Day,timerInfo.Hour,timerInfo.Minute,timerInfo.Second,timerInfo.Millisecond);
                 timeSpan = nextRunTime - DateTimeNow;
             }
             else if(timerInfo.TimerType==TimerType.EveryYear)
             {
-                nextRunTime=new DateTime(DateTimeNow.Year,int.Parse(timerInfo.Month),int.Parse(timerInfo.Day),int.Parse(timerInfo.Hour),int.Parse(timerInfo.Minute),int.Parse(timerInfo.Second),int.Parse(timerInfo.Millisecond));
+                nextRunTime=new DateTime(DateTimeNow.Year,timerInfo.Month,timerInfo.Day,timerInfo.Hour,timerInfo.Minute,timerInfo.Second,timerInfo.Millisecond);
                 while ((nextRunTime - DateTimeNow) < _timerSpanMil)
                 nextRunTime = nextRunTime.AddYears(1);
                 timeSpan = nextRunTime - DateTimeNow;
             }
             else if (timerInfo.TimerType == TimerType.EveryMonth)
             {
-                nextRunTime = new DateTime(DateTimeNow.Year, DateTimeNow.Month, int.Parse(timerInfo.Day), int.Parse(timerInfo.Hour), int.Parse(timerInfo.Minute), int.Parse(timerInfo.Second), int.Parse(timerInfo.Millisecond));
+                nextRunTime = new DateTime(DateTimeNow.Year, DateTimeNow.Month, timerInfo.Day, timerInfo.Hour, timerInfo.Minute, timerInfo.Second, timerInfo.Millisecond);
                 while ((nextRunTime - DateTimeNow) < _timerSpanMil)
                 nextRunTime = nextRunTime.AddMonths(1);
                 timeSpan = nextRunTime - DateTimeNow;
             }
             else if (timerInfo.TimerType == TimerType.EveryDay)
             {
-                nextRunTime = new DateTime(DateTimeNow.Year, DateTimeNow.Month, DateTimeNow.Day, int.Parse(timerInfo.Hour), int.Parse(timerInfo.Minute), int.Parse(timerInfo.Second), int.Parse(timerInfo.Millisecond));
+                nextRunTime = new DateTime(DateTimeNow.Year, DateTimeNow.Month, DateTimeNow.Day, timerInfo.Hour, timerInfo.Minute, timerInfo.Second, timerInfo.Millisecond);
                 while ((nextRunTime - DateTimeNow) < _timerSpanMil)
                 nextRunTime = nextRunTime.AddDays(1);
                 timeSpan = nextRunTime - DateTimeNow;
             }
             else if (timerInfo.TimerType == TimerType.EveryHour)
             {
-                nextRunTime = new DateTime(DateTimeNow.Year, DateTimeNow.Month, DateTimeNow.Day, DateTimeNow.Hour, int.Parse(timerInfo.Minute), int.Parse(timerInfo.Second), int.Parse(timerInfo.Millisecond));
+                nextRunTime = new DateTime(DateTimeNow.Year, DateTimeNow.Month, DateTimeNow.Day, DateTimeNow.Hour, timerInfo.Minute, timerInfo.Second, timerInfo.Millisecond);
                 while ((nextRunTime - DateTimeNow) < _timerSpanMil)
                 nextRunTime = nextRunTime.AddHours(1);
                 timeSpan = nextRunTime - DateTimeNow;
             }
             else if (timerInfo.TimerType == TimerType.EveryMinute)
             {
-                nextRunTime = new DateTime(DateTimeNow.Year, DateTimeNow.Month, DateTimeNow.Day, DateTimeNow.Hour, DateTimeNow.Minute, int.Parse(timerInfo.Second), int.Parse(timerInfo.Millisecond));
+                nextRunTime = new DateTime(DateTimeNow.Year, DateTimeNow.Month, DateTimeNow.Day, DateTimeNow.Hour, DateTimeNow.Minute, timerInfo.Second,timerInfo.Millisecond);
                 while ((nextRunTime - DateTimeNow) < _timerSpanMil)
                 nextRunTime = nextRunTime.AddMinutes(1);
                 timeSpan = nextRunTime - DateTimeNow;
             }
             else if (timerInfo.TimerType == TimerType.EverySecond)
             {
-                nextRunTime = new DateTime(DateTimeNow.Year, DateTimeNow.Month, DateTimeNow.Day, DateTimeNow.Hour, DateTimeNow.Minute, DateTimeNow.Second, int.Parse(timerInfo.Millisecond));
+                nextRunTime = new DateTime(DateTimeNow.Year, DateTimeNow.Month, DateTimeNow.Day, DateTimeNow.Hour, DateTimeNow.Minute, DateTimeNow.Second, timerInfo.Millisecond);
                 while ((nextRunTime - DateTimeNow) < _timerSpanMil)
                 nextRunTime=nextRunTime.AddSeconds(1);
                 timeSpan = nextRunTime - DateTimeNow;
             }
             else 
             {
-               nextRunTime =DateTimeNow.AddYears(int.Parse(timerInfo.Year)).AddMonths(int.Parse(timerInfo.Month)).AddDays(int.Parse(timerInfo.Day)).AddHours(int.Parse(timerInfo.Hour)).AddMinutes(int.Parse(timerInfo.Minute)).AddSeconds(int.Parse(timerInfo.Second)).AddMilliseconds(int.Parse(timerInfo.Millisecond));
+               nextRunTime =DateTimeNow.AddYears(timerInfo.Year).AddMonths(timerInfo.Month).AddDays(timerInfo.Day).AddHours(timerInfo.Hour).AddMinutes(timerInfo.Minute).AddSeconds(timerInfo.Second).AddMilliseconds(timerInfo.Millisecond);
                timeSpan = nextRunTime - DateTimeNow;
             }
             
@@ -316,71 +317,73 @@ namespace Helpers
     public class TimerInfo
     {
         private TimerType timerType;
-
+        /// <summary>
+        /// 如果选择Every类型,会在每年的后边属性进行执行,只会执行比当前小的单位.
+        /// </summary>
         public TimerType TimerType
         {
             get { return timerType; }
             set { timerType = value; }
         }
-        private string year = "0";
+        private int year =0;
         /// <summary>
         /// 年
         /// </summary>
-        public string Year
+        public int Year
         {
             get { return year; }
             set { year = value; }
         }
-        private string month = "0";
+        private int month = 0;
         /// <summary>
         /// 月
         /// </summary>
-        public string Month
+        public int Month
         {
             get { return month; }
             set { month = value; }
         }
-        private string day = "0";
+        private int day = 0;
         /// <summary>
         /// 天
         /// </summary>
-        public string Day
+        public int Day
         {
             get { return day; }
             set { day = value; }
         }
-        private string hour = "0";
+        private int hour = 0;
         /// <summary>
         /// 小时
         /// </summary>
-        public string Hour
+        public int Hour
         {
             get { return hour; }
             set { hour = value; }
         }
-        private string minute = "0";
+        private int minute = 0;
         /// <summary>
         /// 分钟
         /// </summary>
-        public string Minute
+        public int Minute
         {
             get { return minute; }
             set { minute = value; }
         }
-        private string second = "0";
+        private int second = 0;
         /// <summary>
         /// 秒
         /// </summary>
-        public string Second
+        public int Second
         {
             get { return second; }
             set { second = value; }
         }
-        private string millisecond = "0";
+        private int millisecond = 0;
         /// <summary>
         /// 毫秒
         /// </summary>
-        public string Millisecond
+        public int Millisecond
         {
             get { return millisecond; }
             set { millisecond = value; }
