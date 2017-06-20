@@ -76,6 +76,16 @@
     <Compile Include="ChineseName.cs" />
     <Compile Include="ConsoleHelper.cs" />
     <Compile Include="FileOrStream.cs" />
+    <Compile Include="ILHelp\CacheHelp.cs" />
+    <Compile Include="ILHelp\DeleLd.cs" />
+    <Compile Include="ILHelp\EasyIL.cs" />
+    <Compile Include="ILHelp\EasyReflect.cs" />
+    <Compile Include="ILHelp\ILLocalBuilder.cs" />
+    <Compile Include="ILHelp\ILObjectBase.cs" />
+    <Compile Include="ILHelp\ILProperty.cs" />
+    <Compile Include="ILHelp\ILType.cs" />
+    <Compile Include="ILHelp\Interface.cs" />
+    <Compile Include="ILHelp\ObjecetCopy.cs" />
     <Compile Include="ImageHelper.cs" />
     <Compile Include="Internet.cs" />
     <Compile Include="MD5.cs" />
