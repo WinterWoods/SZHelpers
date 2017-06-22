@@ -81,9 +81,7 @@ namespace ILHelp
 
                 EasyIL il = new EasyIL(returnType, classType.Module, argType);  //建立简单EasyIL对象
                 //EasyIL:自定义类,用于简单操作IL生成器生成动态方法
-#if DEBUG
-                il.IL.EmitWriteLine("GetPropertyValue - IL");
-#endif
+
                 //ILParameterBase obj = il.Convert(classType, il["0"]);         //将参数0转换为
                 ILProperty objProperty =
                     il.CreateProperty(propertyInfo, il["0"]);                   //根据对象和属性对象 创建IL参数
@@ -129,9 +127,7 @@ namespace ILHelp
                 Type argType = typeof(object);
 
                 EasyIL il = new EasyIL(returnType, classType.Module, argType);
-#if DEBUG
-                il.IL.EmitWriteLine("GetFieldValue - IL");
-#endif
+
                 ILField objfield = il.CreateField(fieldInfo, il["0"]);
 
                 il.Return(objfield);
@@ -178,9 +174,7 @@ namespace ILHelp
 
                 ILProperty objProperty = il.CreateProperty(propertyInfo, il["0"]);  //根据对象和属性对象 创建IL参数
 
-#if DEBUG
-                il.IL.EmitWriteLine("SetPropertyValue - IL");
-#endif
+
                 objProperty.SetValue(il["1"].StValue());
 
                 il.Return();
@@ -223,9 +217,7 @@ namespace ILHelp
             {
                 Type argType = typeof(object);
                 EasyIL il = new EasyIL(null, classType.Module, argType, argType);
-#if DEBUG
-                il.IL.EmitWriteLine("SetFieldValue - IL");
-#endif
+
                 ILField objField = il.CreateField(fieldInfo, il["0"]);//根据对象和属性对象 创建IL参数
                 objField.SetValue(il["1"].StValue());
                 il.Return();
@@ -269,9 +261,7 @@ namespace ILHelp
                 Type objType = typeof(object);
                 Type argsType = typeof(object[]);
                 EasyIL il = new EasyIL(returnType, classType.Module, objType, argsType);
-#if DEBUG
-                il.IL.EmitWriteLine("CallMethod - IL");
-#endif
+
                 ILMethod objMethod = il.CreateMethod(method, il["0"]);
 
                 LocalBuilder lb = objMethod.Call(il["1"]);
