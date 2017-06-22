@@ -45,6 +45,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>.\itextsharp.pdfa.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="NPOI">
       <HintPath>Libs\NPOI\NPOI.dll</HintPath>
     </Reference>
@@ -53,10 +57,6 @@
     </Reference>
     <Reference Include="NPOI.OpenXml4Net">
       <HintPath>Libs\NPOI\NPOI.OpenXml4Net.dll</HintPath>
-    </Reference>
-    <Reference Include="ServiceStack.Interfaces, Version=4.0.0.0, Culture=neutral, PublicKeyToken=e06fbc6124f57c43, processorArchitecture=MSIL">
-      <HintPath>..\内部通讯\packages\ServiceStack.Interfaces.4.0.60\lib\portable-wp80+sl5+net40+win8+wpa81+monotouch+monoandroid+xamarin.ios10\ServiceStack.Interfaces.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
@@ -74,6 +74,7 @@
   <ItemGroup>
     <Compile Include="Chinese2Spell.cs" />
     <Compile Include="ChineseName.cs" />
+    <Compile Include="ConfigHelper.cs" />
     <Compile Include="ConsoleHelper.cs" />
     <Compile Include="FileOrStream.cs" />
     <Compile Include="GenerateStr.cs" />
