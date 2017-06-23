@@ -31,6 +31,7 @@ namespace Helpers
             Console.ForegroundColor = ConsoleColor.Red;
             msg = AppendMsg("Error", msg);
             Console.WriteLine(msg);
+            Console.ForegroundColor = ConsoleColor.Green;
             WriteLog(msg);
         }
         public void WriteWarning(string msg)
@@ -38,6 +39,7 @@ namespace Helpers
             Console.ForegroundColor = ConsoleColor.Yellow;
             msg = AppendMsg("Warning", msg);
             Console.WriteLine(msg);
+            Console.ForegroundColor = ConsoleColor.Green;
             WriteLog(msg);
         }
         private  string AppendMsg(string type,string msg)
