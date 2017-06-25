@@ -37,7 +37,20 @@ namespace Helpers
                 );
                 x.Save(configpath);
             }
-            xDoc = XDocument.Load(configpath);
+            try
+            {
+                xDoc = XDocument.Load(configpath);
+            }
+            catch
+            {
+                XDocument x = new XDocument(
+                 new XDeclaration("1.0", "utf-8", "yes"),//添加XML文件声明
+                 new XElement("Config")
+                 );
+                x.Save(configpath);
+                xDoc = XDocument.Load(configpath);
+            }
+            
         }
         public string Get(string type, string key,string defaultValue="")
         {
