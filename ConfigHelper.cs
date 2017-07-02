@@ -1,5 +1,4 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -24,7 +23,7 @@ namespace Helpers
             get { return xDoc; }
         }
 
-        public ConfigHelper(string _configPath)
+        public ConfigHelper(string _configPath="config.txt")
         {
             configpath = _configPath;
             var file = new FileInfo(_configPath);
