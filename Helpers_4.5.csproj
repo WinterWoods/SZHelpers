@@ -76,6 +76,7 @@
     <Compile Include="ChineseName.cs" />
     <Compile Include="ConfigHelper.cs" />
     <Compile Include="ConsoleHelper.cs" />
+    <Compile Include="DrawValidationCode.cs" />
     <Compile Include="FileOrStream.cs" />
     <Compile Include="GenerateStr.cs" />
     <Compile Include="ILHelp\CacheHelp.cs" />
