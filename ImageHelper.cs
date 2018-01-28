@@ -181,7 +181,29 @@ namespace Helpers
             }
 
         }
+        /// <summary>
+        /// 获取图片指定部分
+        /// </summary>
+        /// <param name="pPath">图片路径</param>
+        /// <param name="pPartStartPointX">目标图片开始绘制处的坐标X值(通常为0)</param>
+        /// <param name="pPartStartPointY">目标图片开始绘制处的坐标Y值(通常为0)</param>
+        /// <param name="pPartWidth">目标图片的宽度</param>
+        /// <param name="pPartHeight">目标图片的高度</param>
+        /// <param name="pOrigStartPointX">原始图片开始截取处的坐标X值</param>
+        /// <param name="pOrigStartPointY">原始图片开始截取处的坐标Y值</param>
+        public static Bitmap GetPart(string pPath, int pPartStartPointX, int pPartStartPointY, int pPartWidth, int pPartHeight, int pOrigStartPointX, int pOrigStartPointY)
+        {
+            Image originalImg = Image.FromFile(pPath);
 
+            Bitmap partImg = new Bitmap(pPartWidth, pPartHeight);
+            Graphics graphics = Graphics.FromImage(partImg);
+            Rectangle destRect = new Rectangle(new Point(pPartStartPointX, pPartStartPointY), new System.Drawing.Size(pPartWidth, pPartHeight));//目标位置
+            Rectangle origRect = new Rectangle(new Point(pOrigStartPointX, pOrigStartPointY), new System.Drawing.Size(pPartWidth, pPartHeight));//原图位置（默认从原图中截取的图片大小等于目标图片的大小）
+
+            graphics.DrawImage(originalImg, destRect, origRect, GraphicsUnit.Pixel);
+
+            return partImg;
+        }
 
 
     }
