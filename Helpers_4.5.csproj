@@ -57,6 +57,7 @@
   <ItemGroup>
     <Compile Include="Chinese2Spell.cs" />
     <Compile Include="ChineseName.cs" />
+    <Compile Include="CloneExtends.cs" />
     <Compile Include="ConfigHelper.cs" />
     <Compile Include="ConsoleHelper.cs" />
     <Compile Include="DrawValidationCode.cs" />
