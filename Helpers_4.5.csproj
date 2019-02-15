@@ -62,6 +62,7 @@
     <Compile Include="DrawValidationCode.cs" />
     <Compile Include="FileOrStream.cs" />
     <Compile Include="GenerateStr.cs" />
+    <Compile Include="IdCardHelper.cs" />
     <Compile Include="ILHelp\CacheHelp.cs" />
     <Compile Include="ILHelp\DeleLd.cs" />
     <Compile Include="ILHelp\EasyIL.cs" />

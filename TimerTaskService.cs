@@ -172,12 +172,20 @@ namespace Helpers
                 if (timerInfo.TimerType == TimerType.LoopStop)
                 {
                     //Console.WriteLine("task.Wait();");
-                    task.Wait();
+                    try
+                    {
+                        task.Wait();
+                    }
+                    catch { }
                 }
                 else if (timerInfo.TimerType == TimerType.DesDate)
                 {
-                   // Console.WriteLine("task.Wait(); break;");
-                    task.Wait();
+                    // Console.WriteLine("task.Wait(); break;");
+                    try
+                    {
+                        task.Wait();
+                    }
+                    catch { }
                     break;
                 }
                 //Console.WriteLine("getNextRunTime();");
