@@ -14,6 +14,7 @@ namespace Helpers
             {
                 return false;
             }
+            if (idCard.Length < 18) return false;
             return Convert.ToBoolean(int.Parse(idCard.Substring(16, 1)) % 2);
         }
         public static string GetSexStrByIdCard(string idCard)
